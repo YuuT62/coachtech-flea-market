@@ -1,0 +1,120 @@
+.header-wrapper {
+    background-color: #000;
+}
+
+.header {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 1%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header__logo{
+    box-sizing: border-box;
+    width: 30%;
+    margin-right: 5%;
+}
+.header__logo-img {
+    max-width: 300px;
+    width: 100%;
+}
+
+.header-search{
+    box-sizing: border-box;
+    width: 50%;
+    margin-right: 5%;
+    max-height: 32px;
+}
+
+.header-search__box{
+    width: 100%;
+    font-size: clamp(0.625rem, 0.493rem + 0.66vw, 1rem);
+    padding: 2%;
+    border: none;
+    border-radius: 3px;
+}
+
+.header-nav__modal{
+    box-sizing: border-box;
+    width: 10%;
+}
+
+.header-nav__modal-button {
+    background-color: #fff;
+    border: none;
+    border-radius: 1px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+
+}
+
+.header-nav__modal-button-icon {
+    font-size: clamp(1rem, 0.643rem + 1.79vw, 1.5rem);
+}
+
+.header-nav{
+    display: none;
+    width: 100%;
+    max-height: 32px;
+}
+
+.header-nav__list{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+.header-nav__item a{
+    font-size: clamp(0.625rem, 0.493rem + 0.66vw, 1rem);
+    text-decoration: none;
+}
+
+.header-nav__item:not(:last-child) {
+    margin-right: clamp(30px, 5vw, 70px);
+}
+
+.header-nav__item--link{
+    color: #fff;
+}
+
+.header-nav__item--button{
+    color: #000;
+    background-color: #fff;
+    padding: 2px 7px;
+    border-radius: 1px;
+}
+
+@media screen and (min-width: 769px) {
+    .header__logo{
+        width: 25%;
+        margin-right: 2%
+    }
+
+    .header-search{
+        width: 35%;
+        margin-right: 2%;
+    }
+
+    .header-nav__modal{
+        display: none;
+    }
+
+    .header-nav {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        width: 36%;
+    }
+
+    .header-nav__list{
+        justify-content: flex-start;
+    }
+
+}

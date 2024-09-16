@@ -1,0 +1,150 @@
+.form-wrapper {
+    max-width: 1230px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center
+}
+
+.form__header {
+    width: 100%;
+    font-size: clamp(1rem, 0.824rem + 0.88vw, 1.5rem);
+    margin: 25px 0;
+}
+
+.form__subheader{
+    max-width: 350px;
+    width: 60%;
+    text-align: left;
+    font-size: clamp(0.75rem, 0.574rem + 0.88vw, 1.25rem);
+    font-weight: normal;
+    border-bottom: 1px solid #C0C0C0;
+    margin: clamp(20px, 5vw, 35px) auto ;
+}
+
+.form {
+    width: 100%;
+}
+
+.form__element,
+.form__btn,
+.form__error {
+    max-width: 350px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.form__element-label {
+    display: block;
+    text-align: left;
+    font-size: clamp(0.625rem, 0.449rem + 0.88vw, 1.125rem);
+    font-weight: bold;
+    margin: 1px;
+}
+
+.form__element-input {
+    width: 100%;
+    margin: 1px;
+    padding: 3px;
+    border: 1px solid #C0C0C0;
+    border-radius: 1px;
+    font-size: clamp(0.625rem, 0.449rem + 0.88vw, 1.125rem);
+}
+
+.form__error-text {
+    display: block;
+    margin: 1px;
+    max-height: 35px;
+    min-height: 20px;
+    height: 5vw;
+    font-size: clamp(0.5rem, 0.324rem + 0.88vw, 1rem);
+    color: red;
+    text-align: left;
+}
+
+.form__btn-submit {
+    width: 100%;
+    font-size: clamp(0.625rem, 0.449rem + 0.88vw, 1.125rem);
+    color: #fff;
+    background-color: #ff5656;
+    border: 3px solid #ff5656;
+    border-radius: 3px;
+    padding: 3px 0;
+    margin: 10px 0;
+}
+
+.form__btn-submit:hover{
+    color: #ff5656;
+    background-color: #fff;
+}
+
+.form__link {
+    width: 100%;
+}
+
+.form__link-anchor {
+    text-decoration: none;
+    font-size: clamp(0.625rem, 0.449rem + 0.88vw, 1.125rem);
+    color: #509edb;
+}
+
+.form__element--icon{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.form__element--icon img {
+    object-fit: fill;
+    width: 40%;
+    aspect-ratio: 1;
+    max-width: 150px;
+    border-radius: 50%;
+    margin-right: clamp(10px, 3vw, 50px);
+}
+
+.form__element-file-wrapper{
+    border: 1px solid #C0C0C0;
+    padding: clamp(10px, 3vw, 50px);
+}
+.form__element-file{
+    display: none
+}
+
+.form__element-file-btn{
+    cursor: pointer;
+    font-size: clamp(0.625rem, 0.449rem + 0.88vw, 1.125rem);
+    color: #ff5656;
+    border: 2px solid #ff5656;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.form__element-file-btn:hover{
+    color: #fff;
+    background-color: #ff5656;
+}
+
+
+@media screen and (min-width: 769px) {
+    .form__header {
+        margin: 50px 0;
+    }
+
+    .form__subheader,
+    .form__element,
+    .form__btn,
+    .form__error{
+        max-width: 600px;
+    }
+
+    .form__element-input {
+        padding: 10px;
+    }
+
+    .form__btn-submit {
+        margin-top: 20px;
+    }
+
+    .form__link {
+        margin-top: 10px;
+    }
+}
