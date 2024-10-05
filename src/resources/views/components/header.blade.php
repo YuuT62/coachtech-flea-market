@@ -3,8 +3,8 @@
         <div class="header__logo">
             <a href="/"><img class="header__logo-img" src="{{ asset('storage/logo/logo.svg') }}" alt="coachtech-logo"></a>
         </div>
-        <form class="header-search" action="" method="get">
-            <input class="header-search__box" type="text" placeholder="何をお探しですか？">
+        <form class="header-search" action="/search" method="get">
+            <input class="header-search__box" type="text" name="keyword" placeholder="何をお探しですか？" value="<?php if(isset($_GET['keyword'])){echo($_GET['keyword']);} ?>">
         </form>
         <div class="header-nav__modal">
             <button class="header-nav__modal-button">
@@ -24,6 +24,11 @@
                 <li class="header-nav__item">
                     <a class="header-nav__item--link" href="/mypage">マイページ</a>
                 </li>
+                @can('admin')
+                <li class="header-nav__item">
+                    <a class="header-nav__item--link" href="/management">管理</a>
+                </li>
+                @endcan
                 <li class="header-nav__item">
                     <a class="header-nav__item--button" href="/sell">出品</a>
                 </li>
@@ -35,7 +40,7 @@
                     <a class="header-nav__item--link" href="/register">会員登録</a>
                 </li>
                 <li class="header-nav__item">
-                    <a class="header-nav__item--button" href="/register">出品</a>
+                    <a class="header-nav__item--button" href="/login">出品</a>
                 </li>
                 @endif
             </ul>

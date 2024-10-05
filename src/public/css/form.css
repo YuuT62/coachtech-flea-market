@@ -41,13 +41,15 @@
     margin: 1px;
 }
 
-.form__element-input {
+.form__element-input,
+.form__element-select {
     width: 100%;
     margin: 1px;
     padding: 3px;
     border: 1px solid #C0C0C0;
     border-radius: 1px;
     font-size: clamp(0.625rem, 0.449rem + 0.88vw, 1.125rem);
+    appearance: none;
 }
 
 .form__error-text {
@@ -103,10 +105,20 @@
 
 .form__element-file-wrapper{
     border: 1px solid #C0C0C0;
-    padding: clamp(10px, 3vw, 50px);
+    padding: clamp(20px, 3vw, 50px);
+    position: relative;
 }
+
 .form__element-file{
     display: none
+}
+
+.form__element-file-name{
+    font-size: clamp(0.625rem, 0.449rem + 0.88vw, 1.125rem);
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 2%;
 }
 
 .form__element-file-btn{
@@ -123,6 +135,43 @@
     background-color: #ff5656;
 }
 
+.form__element--category{
+    position: relative;
+}
+
+#toolTip{
+    display: none;
+    position: absolute;
+    top: 90%;
+    width: 80%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: clamp(0.625rem, 0.449rem + 0.88vw, 1.125rem);
+    background-color: #C0C0C0;
+    text-align: left;
+    color: #fff;
+}
+
+#toolTip:before{
+    content: "";
+    position: absolute;
+    top: -23px;
+    left: 15%;
+    margin-left: -15px;
+    border:12px solid transparent;
+    border-bottom: 12px solid #C0C0C0;
+    z-index: 2;
+}
+
+/* デフォルトユーザーアイコン */
+.user-icon-default{
+    display: block;
+    border: clamp(0.063rem, 0.041rem + 0.11vw, 0.125rem) solid #000;
+    border-radius: 50%;
+    font-size: clamp(4.688rem, 3.149rem + 7.69vw, 9.063rem);
+    margin-right: clamp(10px, 3vw, 50px);
+}
 
 @media screen and (min-width: 769px) {
     .form__header {
@@ -136,7 +185,8 @@
         max-width: 600px;
     }
 
-    .form__element-input {
+    .form__element-input,
+    .form__element-select {
         padding: 10px;
     }
 

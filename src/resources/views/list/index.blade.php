@@ -13,35 +13,48 @@
 <div class="nav-wrapper">
     <nav class="nav-content">
         <form class="nav__form">
-            <input class="nav__input" type="radio" name="nav" id="rec" onclick="listChange()" checked="checked">
+            <input class="nav__input" type="radio" name="nav" id="rec" onclick="listChange()" value="rec" checked='<?php if(isset($a) && $a==1) echo checked?>'>
             <label class="nav__label" id="labelRec" for="rec">おすすめ</label>
-            <input class="nav__input" type="radio" name="nav" id="fav" onclick="listChange()">
-            <label class="nav__label" id="labelFav" for="fav">マイリスト</label>
+            <input class="nav__input" type="radio" name="nav" id="fav" onclick="listChange()" value="fav" checked='<?php if(isset($a) && $a==2) echo checked?>'>
+            <label class="nav__label" id="labelFav" for="fav" value="2">マイリスト</label>
         </form>
     </nav>
 </div>
+@if(session('message'))
+    <div class="session">
+        {{session('message')}}
+    </div>
+@endif
 <div class="list-wrapper">
     <div class="list-content list-rec" id="listRec">
         @foreach($items as $item)
         <form class="list__element" action="/item/{{ $item->id}}" method="get">
             <button class="list__element-btn">
-                <img class="list__element-img" src="{{ asset('storage/img/'. $item->item_img) }}" alt="item-img">
+                @isset($item->purchase)
+                <div class="list__element-soldout">SOLD OUT</div>
+                @endisset
+                <img class="list__element-img" src="{{ asset($item->item_img) }}" alt="item-img">
                 <p class="list__element-price">¥{{ number_format($item->price) }}</p>
             </button>
         </form>
         @endforeach
+        <div class="list-content__paginate">
+            {{ $items->links('vendor.pagination.default') }}
+        </div>
     </div>
 
+    @if(Auth::check())
     <div class="list-content" id="listFav">
         @foreach($favorites as $item)
         <form class="list__element" action="/item/{{ $item->item->id}}" method="get">
             <button class="list__element-btn">
-                <img class="list__element-img" src="{{ asset('storage/img/'. $item->item->item_img) }}" alt="item-img">
+                <img class="list__element-img" src="{{ asset($item->item->item_img) }}" alt="item-img">
                 <p class="list__element-price">¥{{ number_format($item->item->price) }}</p>
             </button>
         </form>
         @endforeach
     </div>
+    @endif
 </div>
 
 <script>
@@ -56,7 +69,7 @@
             listRec.style.display = "flex";
             labelRec.style.color = "#ff0000";
             listFav.style.display ="none";
-            labelFav.style.color = "#000";
+            labelFav.style.color = "#000"
         }else{
             listRec.style.display = "none";
             labelRec.style.color = "#000";
@@ -64,5 +77,6 @@
             labelFav.style.color = "#ff0000";
         }
     }
+
 </script>
 @endsection

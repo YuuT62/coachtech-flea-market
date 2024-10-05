@@ -14,10 +14,10 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        for($a=1; $a<=5; $a++){
+        for($a=1; $a<=40; $a++){
         $param = [
             'user_id' => 2,
-            'item_name' => 'テスト商品',
+            'item_name' => 'テスト商品'.$a,
             'price' => 1000,
             'brand_name' => 'test',
             'description' => 'あいうえおかくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん',

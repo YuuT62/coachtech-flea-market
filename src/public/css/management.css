@@ -1,0 +1,102 @@
+.management-header{
+    margin: 30px auto;
+}
+.management-header h1{
+    font-size: clamp(1rem, 0.824rem + 0.88vw, 1.5rem);
+    text-align: center;
+}
+
+.nav__form{
+    justify-content: center;
+}
+
+.nav__label{
+    cursor: pointer;
+}
+
+#labelUsers{
+    color: #ff0000;
+}
+
+.management-content{
+    max-width: 1230px;
+    margin: 0 auto;
+}
+
+.list-table{
+    margin: 0 auto;
+    text-align: center;
+    font-size: clamp(0.5rem, 0.324rem + 0.88vw, 1rem);
+}
+
+.list-table__header,
+.list-table__desc{
+    padding: clamp(5px, 1vw, 10px) 5px;
+}
+
+.list-table__btn-submit,
+.form-mail__btn-submit{
+    font-size: clamp(0.5rem, 0.324rem + 0.88vw, 1rem);
+    color: #fff;
+    background-color: #ff5656;
+    border: 3px solid #ff5656;
+    border-radius: 3px;
+}
+
+.list-table__btn-submit:hover {
+    color: #ff5656;
+    background-color: #fff;
+}
+
+
+.form-mail {
+    display: none;
+    margin: 20px auto;
+    border-radius: 5px;
+    max-width: 500px;
+    text-align: left;
+}
+
+.form-mail__header {
+    color: #fff;
+    font-size: 20px;
+}
+
+.form-mail__header {
+    padding: 20px 0 0 20px;
+}
+
+.form-mail__subject,
+.form-mail__message,
+.form-mail__btn{
+    width: 70%;
+    padding: 10px 20px;
+    margin: 0 auto;
+}
+
+.form-mail__subject-input,
+.form-mail__message-input {
+    width: 100%;
+    margin: 1px;
+    padding: 3px;
+    border: 1px solid #C0C0C0;
+    border-radius: 1px;
+    font-size: clamp(0.5rem, 0.324rem + 0.88vw, 1rem);
+    appearance: none;
+}
+
+.form-mail__btn-submit{
+    width: 100%;
+}
+
+.form-mail__error {
+    height: 30px;
+    color: red;
+    margin: 0;
+    padding-left: 5px;
+    font-size: 14px;
+}
+
+@media screen and (min-width: 769px) {
+
+}

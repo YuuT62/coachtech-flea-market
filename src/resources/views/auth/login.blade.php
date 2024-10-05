@@ -16,7 +16,7 @@
         @csrf
         <div class="form__element">
             <label class="form__element-label">メールアドレス</label>
-            <input class="form__element-input" name="email" type="text">
+            <input class="form__element-input" name="email" type="text" value="{{ old('email') }}">
         </div>
         <div class="form__error">
             <span class="form__error-text">

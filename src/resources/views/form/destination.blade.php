@@ -5,14 +5,14 @@
 @endsection
 
 @section('header')
-    @component('components.header_auth')
+    @component('components.header')
     @endcomponent
 @endsection
 
 @section('content')
 <div class="form-wrapper">
     <h1 class="form__header">住所の変更</h1>
-    <form class="form" action="/login" method="post">
+    <form class="form" action="/purchase/address/destination/{{$item_id}}" method="post">
         @csrf
         <div class="form__element">
             <label class="form__element-label">郵便番号</label>
@@ -48,7 +48,7 @@
             </span>
         </div>
         <div class="form__btn">
-            <button class="form__btn-submit">更新する</button>
+            <button class="form__btn-submit" type="submit">更新する</button>
         </div>
     </form>
 </div>

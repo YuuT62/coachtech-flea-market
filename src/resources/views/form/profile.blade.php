@@ -15,9 +15,22 @@
     <form class="form" action="/mypage/profile/update" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form__element form__element--icon" id="previewFile">
+            @empty($user->user_icon)
+            <span class="material-symbols-outlined user-icon-default">
+            person
+            </span>
+            @else
             <img class="form__element-img" src="{{ asset($user->user_icon) }}" alt="user_icon" id="imgFile">
+            @endempty
             <input class="form__element-input form__element-file " name="user_icon" type="file" id="inputFile" accept="image/*" value="">
             <label class="form__element-file-btn" for="inputFile">画像を選択する</label>
+        </div>
+        <div class="form__error">
+            <span class="form__error-text">
+                @error('user_icon')
+                ※{{ $message }}
+                @enderror
+            </span>
         </div>
         <div class="form__element">
             <label class="form__element-label">ユーザー名</label>
@@ -86,9 +99,10 @@
 
             // imgタグを挿入
             const targetElm = document.getElementById('previewFile');
+            const firstChild = targetElm.children[0];
+            targetElm.removeChild(firstChild);
             targetElm.prepend(imgElm);
 
-            document.getElementById('imgFile').style.display = 'none';
 
         });
     });

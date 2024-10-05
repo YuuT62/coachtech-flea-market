@@ -25,5 +25,11 @@ class CategoryItemsTableSeeder extends Seeder
             'category_id' => 2,
         ];
         DB::table('category_items')->insert($param);
+
+        $param = [
+            'item_id' => 2,
+            'category_id' => 3,
+        ];
+        DB::table('category_items')->insert($param);
     }
 }

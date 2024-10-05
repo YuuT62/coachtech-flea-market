@@ -22,7 +22,7 @@ class CommentsTableSeeder extends Seeder
         DB::table('comments')->insert($param);
 
         $param = [
-            'user_id' => 3,
+            'user_id' => 1,
             'item_id' => 1,
             'comment' => "あいうえおかくけこさしすせそたちつてとなにぬねのはひふへほまみむめも",
         ];
@@ -36,7 +36,7 @@ class CommentsTableSeeder extends Seeder
         DB::table('comments')->insert($param);
 
         $param = [
-            'user_id' => 3,
+            'user_id' => 1,
             'item_id' => 1,
             'comment' => "0123456789",
         ];
@@ -50,7 +50,7 @@ class CommentsTableSeeder extends Seeder
         DB::table('comments')->insert($param);
 
         $param = [
-            'user_id' => 3,
+            'user_id' => 1,
             'item_id' => 1,
             'comment' => "abcdefghijklmnopqrstuvwxyz",
         ];

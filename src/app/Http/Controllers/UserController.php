@@ -7,14 +7,17 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\Address;
 use App\Models\User;
+use App\Models\Purchase;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ProfileRequest;
 
 class UserController extends Controller
 {
     public function mypage(){
         $user=Auth::user();
-        $items=Item::UserSearch($user->id)->get();
-        return view('.list.mypage', compact('user', 'items'));
+        $items=Item::UserSearch($user->id)->get()->reverse();
+        $purchases=Purchase::with('item')->UserSearch($user->id)->get()->reverse();
+        return view('.list.mypage', compact('user', 'items', 'purchases'));
     }
 
     public function edit(){
@@ -28,7 +31,7 @@ class UserController extends Controller
         }
     }
 
-    public function update(Request $request){
+    public function update(ProfileRequest $request){
         $user_id = Auth::id();
         $user = User::find($user_id);
         if($request->file('user_icon') !== null && $request['name'] !== null && $request['name'] !== $user->name){
@@ -83,7 +86,7 @@ class UserController extends Controller
                 ]);
             }
         }
-        return redirect('/mypage');
+        return redirect('/mypage')->with('message', 'プロフィールを編集しました');
 
     }
 }

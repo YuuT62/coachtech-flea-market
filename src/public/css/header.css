@@ -72,12 +72,12 @@
 }
 
 .header-nav__item a{
-    font-size: clamp(0.625rem, 0.493rem + 0.66vw, 1rem);
+    font-size: clamp(0.625rem, 0.357rem + 1.34vw, 1rem);
     text-decoration: none;
 }
 
 .header-nav__item:not(:last-child) {
-    margin-right: clamp(30px, 5vw, 70px);
+    margin-right: clamp(30px, 1vw, 70px);
 }
 
 .header-nav__item--link{
@@ -115,6 +115,10 @@
 
     .header-nav__list{
         justify-content: flex-start;
+    }
+
+    .header-nav__item a{
+        font-size: clamp(0.625rem, -0.001rem + 1.3vw, 1rem);
     }
 
 }

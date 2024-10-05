@@ -10,6 +10,16 @@ class Item extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'user_id',
+        'item_name',
+        'price',
+        'brand_name',
+        'description',
+        'condition_id',
+        'item_img',
+    ];
+
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -23,7 +33,7 @@ class Item extends Model
     }
 
     public function purchase(){
-        return $this->belongsTo(Purchase::class);
+        return $this->hasOne(Purchase::class);
     }
 
     public function comment(){
@@ -46,5 +56,13 @@ class Item extends Model
 
     public function isFavoriteBy($user): bool {
         return Favorite::where('user_id', $user->id)->where('item_id', $this->id)->first() !==null;
+    }
+
+    public function scopeKeywordSearch($query_item, $keyword){
+        if(!empty($keyword)){
+            $query_item->where('item_name', 'like', '%'.  $keyword. '%')->orWhereHas('categories', function ($query_category) use($keyword){
+                $query_category->where('category', 'like', '%'. $keyword. '%');
+            });
+        }
     }
 }

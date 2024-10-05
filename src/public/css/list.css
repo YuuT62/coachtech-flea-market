@@ -9,6 +9,10 @@
     margin: 0 auto;
 }
 
+.list-header{
+    position: relative;
+}
+
 .list-header-content{
     width: 90%;
     margin: 0 auto;
@@ -47,13 +51,19 @@
     top: 70%;
     right: 10%;
 }
+
 .list-header__link-anchor{
     text-decoration: none;
     font-size: clamp(0.625rem, 0.493rem + 0.66vw, 1rem);
-    color: red;
-    border: 1px solid red;
+    color: #ff0000;
+    border: 1px solid #ff0000;
     border-radius: 3px;
     padding: 0.5% 3%;
+}
+
+.list-header__link-anchor:hover{
+    background-color: #ff0000;
+    color: #fff;
 }
 
 .nav__form {
@@ -124,6 +134,88 @@
     top: 70%;
     left: 7%;
 }
+
+/* ページネーションリンクのデザイン */
+.list-content__paginate {
+    width: 100%;
+    margin: 30px auto;
+}
+
+.pagination {
+    width:100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    font-size: clamp(0.5rem, -0.214rem + 3.57vw, 1.5rem);
+}
+
+.pagination li{
+    margin-right: 5px;
+}
+/* デフォルトユーザーアイコン */
+.user-icon-default {
+    display: block;
+    border: clamp(0.063rem, 0.041rem + 0.11vw, 0.125rem) solid #000;
+    border-radius: 50%;
+    font-size: clamp(4.688rem, 3.149rem + 7.69vw, 9.063rem);
+    margin-right: clamp(10px, 3vw, 50px);
+    margin-left: 10%;
+}
+
+/* SOLD OUTデザイン */
+.list__element-soldout{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(0.5rem, -0.214rem + 3.57vw, 1.5rem);
+    color: #fff;
+    background-color: #ff0000;
+    font-weight: bold;
+    padding: 3px;
+}
+
+/* セッションデザイン */
+.session{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    text-align: center;
+    background-color: #ff5656;
+    font-size: clamp(1rem, 0.824rem + 0.88vw, 1.5rem);
+    font-weight: bold;
+    color: #fff;
+    animation: fadeOut 5s;
+    opacity: 0;
+    z-index: -1;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 0;
+        z-index: 1;
+    }
+    10% {
+        opacity: 1;
+        z-index: 1;
+    }
+    90% {
+        opacity: 1;
+        z-index: 1;
+    }
+    99% {
+        opacity: 0;
+        z-index: 1;
+    }
+    100% {
+        z-index: -1;
+    }
+}
+
+
 
 @media screen and (min-width: 769px) {
     .list-header-content {

@@ -112,11 +112,11 @@
 
 .detail-info-about-category__header,
 .detail-info-about-condition__header{
-    font-size: clamp(0.875rem, 0.699rem + 0.88vw, 1.375rem);
+    font-size: clamp(0.75rem, 0.574rem + 0.88vw, 1.25rem);
 }
 
 .detail-info-desc__content{
-    font-size: clamp(0.875rem, 0.699rem + 0.88vw, 1.375rem);
+    font-size: clamp(0.75rem, 0.574rem + 0.88vw, 1.25rem);
     margin: 0 0 20px;
 }
 
@@ -141,12 +141,13 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     padding: 0;
 }
 
 .detail-info-about-category__item{
     width: 30%;
-    font-size: clamp(0.75rem, 0.574rem + 0.88vw, 1.25rem);
+    font-size: clamp(0.625rem, 0.493rem + 0.66vw, 1rem);
     background-color: #DDDDDD;
     text-align: center;
     border-radius: 10px;
@@ -185,14 +186,18 @@
 
 .detail-comment-icon{
     margin: 0 10px;
+    display: flex;
+    align-items: center;
 }
 
 .my-comment{
     text-align: right;
+    justify-content: right;
 }
 
 .other-comment{
     text-align: left;
+    justify-content: left;
 }
 
 .detail-comment-icon__img{
@@ -201,6 +206,7 @@
     aspect-ratio: 1;
     max-width: 150px;
     border-radius: 50%;
+    margin: 0 5px;
 }
 
 .detail-comment-content{
@@ -240,6 +246,53 @@
     font-size: clamp(0.875rem, 0.699rem + 0.88vw, 1.375rem);
 }
 
+/* デフォルトユーザーアイコン */
+.user-icon-default {
+    border: clamp(0.063rem, 0.041rem + 0.11vw, 0.125rem) solid #000;
+    border-radius: 50%;
+    font-size: clamp(1.563rem, 1.123rem + 2.2vw, 2.813rem);
+    text-align: center;
+    margin: 0 5px;
+}
+
+/* セッションデザイン */
+.session {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    text-align: center;
+    background-color: #ff5656;
+    font-size: clamp(1rem, 0.824rem + 0.88vw, 1.5rem);
+    font-weight: bold;
+    color: #fff;
+    animation: fadeOut 5s;
+    opacity: 0;
+    z-index: -1;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 0;
+        z-index: 1;
+    }
+    10% {
+        opacity: 1;
+        z-index: 1;
+    }
+    90% {
+        opacity: 1;
+        z-index: 1;
+    }
+    99% {
+        opacity: 0;
+        z-index: 1;
+    }
+    100% {
+        z-index: -1;
+    }
+}
 
 @media screen and (min-width: 769px) {
     .detail-wrapper {
@@ -255,7 +308,7 @@
     }
 
     .detail-content{
-        width: 40%;
+        width: 50%;
         margin: 0 10% 0 5%;
     }
 }

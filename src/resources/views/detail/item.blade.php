@@ -11,8 +11,18 @@
 
 @section('content')
 <div class="detail-wrapper">
+    @if(session('messages'))
+    <div class="session">
+        {{session('messages')}}
+    </div>
+    @endif
+    @error('comment')
+    <div class="session">
+        {{ $message }}
+    </div>
+    @enderror
     <div class="detail__img">
-        <img src="{{ asset('storage/img/'. $item->item_img) }}" alt="product-img">
+        <img src="{{ asset($item->item_img) }}" alt="item-img">
     </div>
     <div class="detail-content">
         <div class="detail-header">
@@ -51,15 +61,17 @@
             </ul>
         </div>
 
-        @if(Auth::check())
-        <form class="detail-btn" action="" method="post" id="detailBtn">
-            <button class="detail-btn__submit" type="submit">購入する</button>
+        <form class="detail-btn" action="/purchase/{{ $item->id }}" method="get" id="detailBtn">
+            @isset($item->purchase)
+            <button class="detail-btn__submit" type="button" style="background-color:#C0C0C0; border:3px solid #C0C0C0; pointer-events:none;" >SOLD OUT</button>
+            @else
+                @if($item->user_id === Auth::id())
+                <button class="detail-btn__submit" type="button" style="background-color:#C0C0C0; border:3px solid #C0C0C0; pointer-events:none;" >購入不可</button>
+                @else
+                <button class="detail-btn__submit" type="submit">購入する</button>
+                @endif
+            @endisset
         </form>
-        @else
-        <form class="detail-btn" action="/login" method="get" id="detailBtn">
-            <button class="detail-btn__submit" type="submit">購入する</button>
-        </form>
-        @endif
 
         <div class="detail-info" id="detailInfo">
             <div class="detail-info-desc">
@@ -74,9 +86,6 @@
                         @foreach($item->categories as $categories)
                             <li class="detail-info-about-category__item">{{ $categories->category}}</li>
                         @endforeach
-                        @for($a=0; $a<=5; $a++)
-                            <li class="detail-info-about-category__item">テスト</li>
-                        @endfor
                     </ul>
                 </div>
                 <div class="detail-info-about-condition">
@@ -92,7 +101,13 @@
                     @if($comment->user_id === Auth::id())
                     <div class="detail-comment-icon my-comment">
                         <span class="detail-comment-icon__name">{{ $comment->user->name }}</span>
-                        <img class="detail-comment-icon__img"  src="{{ asset('storage/img/'. $comment->user->user_icon) }}" alt="icon-img">
+                        @empty($comment->user->user_icon)
+                        <span class="material-symbols-outlined user-icon-default">
+                        person
+                        </span>
+                        @else
+                        <img class="detail-comment-icon__img"  src="{{ asset($comment->user->user_icon) }}" alt="icon-img">
+                        @endempty
                     </div>
                     <div class="detail-comment-content">
                         <p>{{ $comment->comment }}</p>
@@ -106,12 +121,26 @@
                     </div>
                     @else
                     <div class="detail-comment-icon other-comment">
-                        <img class="detail-comment-icon__img"  src="{{ asset('storage/img/'. $comment->user->user_icon) }}" alt="icon-img">
+                        @empty($comment->user->user_icon)
+                        <span class="material-symbols-outlined user-icon-default">
+                        person
+                        </span>
+                        @else
+                        <img class="detail-comment-icon__img"  src="{{ asset($comment->user->user_icon) }}" alt="icon-img">
+                        @endempty
                         <span class="detail-comment-icon__name">{{ $comment->user->name }}</span>
                     </div>
                     <div class="detail-comment-content">
                         <p>{{ $comment->comment }}</p>
                         <span>{{substr($comment->created_at, 0, -3)}}</span>
+                        @can('admin')
+                        <form class="detail-comment-delete" action="/item/comment/delete" method="post">
+                            @csrf
+                            <input type="hidden" name="item_id" value="{{ $item->id }}">
+                            <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                            <button class="detail-comment-delete__submit" type="submit">削除</button>
+                        </form>
+                        @endcan
                     </div>
                     @endif
                 </div>

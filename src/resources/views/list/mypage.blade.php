@@ -12,8 +12,19 @@
 @section('content')
 <div class="list-header">
     <div class="list-header-content">
+        @if(session('message'))
+        <div class="session">
+            {{session('message')}}
+        </div>
+        @endif
         <div class="list-header__user">
+            @empty($user->user_icon)
+            <span class="material-symbols-outlined user-icon-default">
+            person
+            </span>
+            @else
             <img class="list-header__user-icon" src="{{ asset($user->user_icon) }}" alt="user_icon">
+            @endempty
             <p class="list-header__user-name">{{ $user->name }}</p>
         </div>
         <div class="list-header__link">
@@ -23,12 +34,12 @@
 </div>
 <div class="nav-wrapper">
     <nav class="nav-content">
-        <form class="nav__form">
+        <div class="nav__form">
             <input class="nav__input" type="radio" name="nav" id="sell" onclick="listChange()" checked="checked">
             <label class="nav__label" id="labelSell" for="sell">出品した商品</label>
             <input class="nav__input" type="radio" name="nav" id="purchase" onclick="listChange()">
             <label class="nav__label" id="labelPurchase" for="purchase">購入した商品</label>
-        </form>
+        </div>
     </nav>
 </div>
 <div class="list-wrapper">
@@ -36,17 +47,19 @@
         @foreach($items as $item)
         <form class="list__element list__element--mypage" action="/item/{{ $item->id}}" method="get">
             <button class="list__element-btn">
-                <img class="list__element-img" src="{{ asset('storage/img/'. $item->item_img) }}" alt="product-img">
+                <img class="list__element-img" src="{{ asset($item->item_img) }}" alt="item-img">
+                <p class="list__element-price">¥{{ number_format($item->price) }}</p>
             </button>
         </form>
         @endforeach
     </div>
 
     <div class="list-content" id="listPurchase">
-        @foreach($items as $item)
+        @foreach($purchases as $purchase)
         <form class="list__element list__element--mypage">
             <button class="list__element-btn">
-                <img class="list__element-img" src="{{ asset('storage/img/'. $item->item_img) }}" alt="product-img">
+                <img class="list__element-img" src="{{ asset($purchase->item->item_img) }}" alt="item-img">
+                <p class="list__element-price">¥{{ number_format($purchase->item->price) }}</p>
             </button>
         </form>
         @endforeach

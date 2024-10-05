@@ -1,0 +1,25 @@
+body,
+.header {
+    background-color: #eeeeee;
+}
+
+.email-content {
+    max-width: 450px;
+    margin: 30px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.email-content__header-text {
+    font-size: 24px;
+    margin: 10px;
+}
+
+.email-content__message {
+    margin: 10px;
+}
+
+.email-content__footer {
+    text-align: right;
+}
