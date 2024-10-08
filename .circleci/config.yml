@@ -13,7 +13,7 @@ jobs:
       # - run: sudo composer self-update --2
       - run:
           name: Docker php extensions install
-          command: sudo docker-php-ext-install pdo_mysql zip gd
+          command: sudo docker-php-ext-install pdo_mysql
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "composer.json" }}
