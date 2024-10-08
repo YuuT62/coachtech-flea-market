@@ -9,8 +9,8 @@ jobs:
       - run:
           working_directory: src
           command: composer install -n --prefer-dist
-      - run: npm ci
-      - run: npm run dev
+      # - run: npm ci
+      # - run: npm run dev
       - run:
           name: php test
           command: vendor/bin/phpunit
