@@ -5,7 +5,7 @@ jobs:
       - image: cimg/php:8.1
     steps:
       - checkout
-      - run: sudo composer self-update --1
+      - run: sudo composer self-update --2
       - run: composer install -n --prefer-dist
       - run: npm ci
       - run: npm run dev
