@@ -12,7 +12,7 @@
 @section('content')
 <div class="form-wrapper">
     <h1 class="form__header">商品の出品</h1>
-    <form class="form" action="/item/register" method="post" enctype="multipart/form-data">
+    <form class="form" action="/sell" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form__element">
             <label class="form__element-label">商品画像</label>

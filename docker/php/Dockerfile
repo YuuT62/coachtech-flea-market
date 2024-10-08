@@ -6,9 +6,18 @@ COPY php.ini /usr/local/etc/php/
 COPY entrypoint.sh /tmp/
 COPY cron.sh /root/script/
 
-RUN apt update \
-    && apt install -y default-mysql-client zlib1g-dev libzip-dev unzip cron\
-    && docker-php-ext-install pdo_mysql zip
+RUN apt-get update \
+    && apt-get install -y \
+    default-mysql-client\
+    zlib1g-dev\
+    libzip-dev\
+    unzip\
+    cron\
+    mariadb-client\
+    libfreetype6-dev\
+    libjpeg62-turbo-dev\
+    libpng-dev\
+    && docker-php-ext-install pdo_mysql zip gd
 
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \

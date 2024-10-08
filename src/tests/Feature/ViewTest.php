@@ -11,6 +11,11 @@ use App\Models\Role;
 use App\Models\Condition;
 use DateTime;
 
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\StripeController;
+use App\Http\Controllers\ManagementController;
+
 class ViewTest extends TestCase
 {
     use RefreshDatabase;

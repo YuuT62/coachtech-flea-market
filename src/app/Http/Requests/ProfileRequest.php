@@ -34,7 +34,7 @@ class ProfileRequest extends FormRequest
 
     public function messages(){
         return [
-            'user_icon.image' => '画像ファイルを選択してください。',
+            'user_icon.mimes' => '画像ファイルを選択してください。',
             'postcode.regex' => 'XXX-XXXXの形式で入力してください。',
             'address.regex' => '都道府県、市区町村を入力してください。'
         ];
