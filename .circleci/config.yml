@@ -7,7 +7,7 @@ jobs:
         environment:
           DB_HOST: 127.0.0.1
       - image: circleci/mysql:8.0
-    working_directory: ~/coachtech-flea-market
+    working_directory: src
     environment:
       DB_CONNECTION: mysql
       MYSQL_ALLOW_EMPTY_PASSWORD: true
