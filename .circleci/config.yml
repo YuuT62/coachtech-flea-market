@@ -3,8 +3,6 @@ jobs:
   build:
     docker:
       - image: cimg/php:8.1
-    environment:
-      - DB_CONNECTION: demo_test
     steps:
       - checkout
       - run:
@@ -28,11 +26,6 @@ jobs:
       #     paths:
       #       - ./vendor
       #     key: v1-dependencies-{{ checksum "composer.json" }}
-
-      - run:
-          name: "Create database and run migration"
-          command: |
-            php artisan migrate:fresh --env=testing
 
       - run:
           name: Run PHPUnit
