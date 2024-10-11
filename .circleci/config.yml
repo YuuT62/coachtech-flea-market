@@ -14,20 +14,20 @@ jobs:
       - run:
           name: Docker php extensions install
           command: sudo docker-php-ext-install pdo_mysql
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
+      # - restore_cache:
+      #     keys:
+      #       - v1-dependencies-{{ checksum "composer.json" }}
+      #       - v1-dependencies-
       - run:
           name: Install PHP libraries
           working_directory: src
           command: composer install -n --prefer-dist
       # - run: npm ci
       # - run: npm run dev
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
+      # - save_cache:
+      #     paths:
+      #       - ./vendor
+      #     key: v1-dependencies-{{ checksum "composer.json" }}
       - run:
           name: Run PHPUnit
           working_directory: src

@@ -29,7 +29,7 @@ class ItemController extends Controller
     }
 
     public function search(Request $request){
-        $items = Item::with('purchase')->KeywordSearch($request['keyword'])->get();
+        $items = Item::with('purchase')->KeywordSearch($request['keyword'])->latest()->paginate(15);
         $favorites=[];
         if(Auth::check()){
             $favorites=Favorite::UserSearch(Auth::id())->with('item')->get();
