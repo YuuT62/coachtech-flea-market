@@ -5,26 +5,26 @@ jobs:
       - image: cimg/php:8.1
     steps:
       - checkout
-      # - run:
-      #     name: update apt-get
-      #     command: sudo apt-get update
+      - run:
+          name: update apt-get
+          command: sudo apt-get update && apt-get install -y
       # - run: sudo composer self-update --2
-      # - run:
-      #     name: Docker php extensions install
-      #     command: sudo docker-php-ext-install pdo_mysql
+
+      - run:
+          command: default-mysql-client zlib1g-dev libzip-dev unzip cron mariadb-client libfreetype6-dev libjpeg62-turbo-dev libpng-dev
+
+      - run:
+          name: Docker php extensions install
+          command: sudo docker-php-ext-install pdo_mysql zip gd
       # - restore_cache:
       #     keys:
       #       - v1-dependencies-{{ checksum "composer.json" }}
       #       - v1-dependencies-
-      - run:
-          command: docker-compose up -d --build
-      - run:
-          command: docker-compose exec php bash
 
       - run:
           name: Install PHP libraries
           working_directory: src
-          command: composer install -n --prefer-dist
+          command: composer install
       # - run: npm ci
       # - run: npm run dev
       # - save_cache:
@@ -32,6 +32,8 @@ jobs:
       #       - ./vendor
       #     key: v1-dependencies-{{ checksum "composer.json" }}
 
+      - run:
+          command: php artisan migrate --env=testing
       - run:
           name: Run PHPUnit
           working_directory: src
