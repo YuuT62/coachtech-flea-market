@@ -9,7 +9,6 @@ jobs:
     working_directory: ~/coachtech-flea-market/src
     steps:
       - checkout:
-        path: ~/coachtech-flea-market
       - run: sudo apt update && sudo apt install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev zlib1g-dev default-mysql-client libzip-dev unzip cron mariadb-client
 
       - run: |
