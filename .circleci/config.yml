@@ -9,8 +9,7 @@ jobs:
           name: update apt-get
           command: sudo apt-get update
       # - run: sudo composer self-update --2
-      - run: 
-          command: apt-get install -y
+
       - run:
           command: default-mysql-client zlib1g-dev libzip-dev unzip cron mariadb-client libfreetype6-dev libjpeg62-turbo-dev libpng-dev
 
