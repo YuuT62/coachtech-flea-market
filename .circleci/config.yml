@@ -28,6 +28,12 @@ jobs:
       #     paths:
       #       - ./vendor
       #     key: v1-dependencies-{{ checksum "composer.json" }}
+
+      - run:
+          name: "Create database and run migration"
+          command: |
+            php artisan migrate:fresh --env=testing
+
       - run:
           name: Run PHPUnit
           working_directory: src
