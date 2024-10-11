@@ -7,7 +7,7 @@ jobs:
         environment:
           DB_HOST: 127.0.0.1
       - image: circleci/mysql:8.0
-    working_directory: ~/laravelgram
+    working_directory: ~/coachtech-flea-market
     environment:
       DB_CONNECTION: mysql
       MYSQL_ALLOW_EMPTY_PASSWORD: true
@@ -28,17 +28,9 @@ jobs:
           command: |
             sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E88979FB9B30ACF2
             sudo apt-get update --allow-releaseinfo-change
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
       - run:
           name: Install PHP libraries
           command: composer install
-      - save_cache:
-          paths:
-            - vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
       - run:
           name: NPM install
           command: |
