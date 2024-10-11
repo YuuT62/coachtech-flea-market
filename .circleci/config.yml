@@ -29,8 +29,8 @@ jobs:
       #       - ./vendor
       #     key: v1-dependencies-{{ checksum "composer.json" }}
 
-      - run:
-          command: php artisan migrate --env=testing
+      # - run:
+      #     command: php artisan migrate --env=testing
       - run:
           name: Run PHPUnit
           working_directory: src
