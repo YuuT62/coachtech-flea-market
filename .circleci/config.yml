@@ -5,14 +5,14 @@ jobs:
       - image: cimg/php:8.1
     steps:
       - checkout
-      - run:
-          name: update apt-get
-          command: sudo apt-get update
+      # - run:
+      #     name: update apt-get
+      #     command: sudo apt-get update
       # - run: sudo composer self-update --2
 
-      - run:
-          name: Docker php extensions install
-          command: sudo docker-php-ext-install
+      # - run:
+      #     name: Docker php extensions install
+      #     command: sudo docker-php-ext-install pdo_mysql
       # - restore_cache:
       #     keys:
       #       - v1-dependencies-{{ checksum "composer.json" }}
