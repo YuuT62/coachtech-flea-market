@@ -3,8 +3,6 @@ jobs:
   build:
     docker:
       - image: cimg/php:8.1
-        environment:
-          DB_HOST: 127.0.0.1
       - image: cimg/mysql:8.0
     working_directory: ~/coachtech-flea-market/src
     steps:
