@@ -6,19 +6,23 @@ jobs:
         environment:
           DB_HOST: 127.0.0.1
       - image: cimg/mysql:8.0
-    working_directory: ~/coachtech-flea-market
+    # working_directory: ~/coachtech-flea-market
     steps:
       - checkout
-      - run: docker-compose up -d --build
-
-
+      # - run: sudo apt update
       - run:
           name: Install PHP libraries
           working_directory: src
-          command: composer install
+          command: composer install -n --prefer-dist
 
       - run:
-          command: php artisan migrate --env=testing
+                name: "Create database and run migration"
+                command: |
+                  touch storage/testing.sqlite
+                  php artisan migrate --env=testing --database=sqlite_testing --force
+
+      # - run:
+      #     command: php artisan migrate --env=testing
       - run:
           name: Run PHPUnit
           working_directory: src
