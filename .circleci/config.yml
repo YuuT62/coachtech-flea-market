@@ -17,6 +17,7 @@ jobs:
 
       - run:
                 name: "Create database and run migration"
+                working_directory: src
                 command: |
                   touch storage/testing.sqlite
                   php artisan migrate --env=testing --database=sqlite_testing --force
