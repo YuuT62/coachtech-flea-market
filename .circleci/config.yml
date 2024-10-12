@@ -5,7 +5,10 @@ jobs:
       - image: cimg/php:8.1-node
         environment:
           DB_HOST: 127.0.0.1
-      - image: cimg/mysql:8.0
+          DB_CONNECTION: demo_test
+          APP_ENV: testing
+        services:
+          - mysql
     # working_directory: ~/coachtech-flea-market
     steps:
       - checkout
@@ -18,9 +21,7 @@ jobs:
       - run:
                 name: "Create database and run migration"
                 working_directory: src
-                command: |
-                  touch storage/testing.sqlite
-                  php artisan migrate --env=testing --database=sqlite_testing --force
+                command: php artisan migrate --env=testing
 
       # - run:
       #     command: php artisan migrate --env=testing
