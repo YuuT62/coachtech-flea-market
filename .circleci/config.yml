@@ -7,8 +7,6 @@ jobs:
           DB_HOST: 127.0.0.1
           DB_CONNECTION: demo_test
           APP_ENV: testing
-        services:
-          - mysql
     # working_directory: ~/coachtech-flea-market
     steps:
       - checkout
