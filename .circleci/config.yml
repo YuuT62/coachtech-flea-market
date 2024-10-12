@@ -5,8 +5,7 @@ jobs:
       - image: cimg/php:8.1-node
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints: SHA256:yoMRtYplMCU+1sOx+Cd0z2e+rgY5v3rRQK9WDHkEDu8
+      - add_ssh_keys
       - run:
           name: aws deploy
           command: |
