@@ -9,7 +9,7 @@ jobs:
       - run:
           name: aws deploy
           command: |
-            ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www &&\
+            ssh -o StrictHostKeyChecking=no -t ec2-user@${HOST_NAME} 'cd /var/www &&\
             git pull origin master &&\
             composer install -n --no-dev --prefer-dist &&\
             sudo yum install php php-devel php-opcache php-mbstring php-xml &&\
