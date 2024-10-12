@@ -6,7 +6,11 @@ jobs:
       - image: cimg/mysql:8.0
         environment:
           DB_HOST: 127.0.0.1
-          APP_ENV: testing
+          DB_CONNECTION: mysql
+          DB_PORT: 3306
+          DB_DATABASE: demo_test
+          DB_USERNAME: root
+          DB_PASSWORD: root
     # working_directory: ~/coachtech-flea-market
     steps:
       - checkout
