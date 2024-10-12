@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  test:
     docker:
       - image: cimg/php:8.1-node
       - image: cimg/mysql:8.0
@@ -11,11 +11,11 @@ jobs:
     environment:
         APP_ENV: testing
         DB_HOST: 127.0.0.1
-    # working_directory: ~/coachtech-flea-market
+
     steps:
       - checkout
       - run: sudo apt update
-      - run: sudo docker-php-ext-install
+      - run: sudo docker-php-ext-install pdo_mysql
       - run:
           name: Install PHP libraries
           working_directory: src
@@ -26,9 +26,29 @@ jobs:
           working_directory: src
           command: php artisan migrate --env=testing
 
-      # - run:
-      #     command: php artisan migrate --env=testing
       - run:
           name: Run PHPUnit
           working_directory: src
           command: vendor/bin/phpunit tests/Feature/
+
+  deploy:
+    docker:
+      - image: cimg/php:8.1-node
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: SHA256:DMSCPSBHAOM+3ybD4wROC6kvR50uacu7bfob6ZfAHm4
+      - run:
+          name: aws deploy
+          command: |
+            ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www && git pull'
+
+workflows:
+  version: 2.1
+  test_and_deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+
