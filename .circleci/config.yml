@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: SHA256:DMSCPSBHAOM+3ybD4wROC6kvR50uacu7bfob6ZfAHm4
+          fingerprints: SHA256:yoMRtYplMCU+1sOx+Cd0z2e+rgY5v3rRQK9WDHkEDu8
       - run:
           name: aws deploy
           command: |
