@@ -14,7 +14,8 @@ jobs:
     # working_directory: ~/coachtech-flea-market
     steps:
       - checkout
-      # - run: sudo apt update
+      - run: sudo apt update
+      - run: sudo docker-php-ext-install zip pdo_mysql
       - run:
           name: Install PHP libraries
           working_directory: src
