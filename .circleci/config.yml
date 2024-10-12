@@ -41,7 +41,11 @@ jobs:
       - run:
           name: aws deploy
           command: |
-            ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www && git pull'
+            ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www &&\
+            git pull origin master &&\
+            composer install -n --no-dev --prefer-dist &&\
+            sudo yum install php php-devel php-opcache php-mbstring php-xml &&\
+            cd /CoachtechFleaMarket/src'
 
 workflows:
   version: 2.1
