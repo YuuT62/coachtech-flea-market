@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - run: sudo apt update
-      - run: sudo docker-php-ext-install pdo_mysql
+      - run: sudo docker-php-ext-install
       - run:
           name: Install PHP libraries
           working_directory: src
