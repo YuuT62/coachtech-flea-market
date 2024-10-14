@@ -19,7 +19,7 @@ class CreateAddressesTable extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('prefecture');
             $table->string('city');
-            $table->string('block')->nullable();
+            $table->string('block');
             $table->string('building')->nullable();
             $table->boolean('register');
             $table->timestamps();
