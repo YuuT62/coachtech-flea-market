@@ -7,11 +7,9 @@ jobs:
         environment:
           - MYSQL_DATABASE: demo_test
           - MYSQL_ROOT_PASSWORD: root
-
     environment:
-        APP_ENV: testing
-        DB_HOST: 127.0.0.1
-
+      - APP_ENV: testing
+      - DB_HOST: 127.0.0.1
     steps:
       - checkout
       - run: sudo apt update
@@ -20,17 +18,14 @@ jobs:
           name: Install PHP libraries
           working_directory: src
           command: composer install -n --prefer-dist
-
       - run:
           name: "Create database and run migration"
           working_directory: src
           command: php artisan migrate --env=testing
-
       - run:
           name: Run PHPUnit
           working_directory: src
           command: vendor/bin/phpunit tests/Feature/
-
   deploy:
     docker:
       - image: cimg/php:8.1-node
@@ -50,7 +45,6 @@ jobs:
             sudo yum install php php-devel php-opcache php-mbstring php-xml &&\
             sudo cp .env.example .env &&\
             php artisan key:generate'
-
 workflows:
   version: 2.1
   test_and_deploy:
