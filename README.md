@@ -141,14 +141,23 @@ https://1drv.ms/f/c/397a6ae1e8c40085/EoMXPmsPguFMubw7shwMXUYBrzosX4DTUGbfXcrDPn_
 ・user-icon
 
 フォルダ配置、作成後の"CoachtechFleaMarket/src/storage/app/public"フォルダの状態
+
 CoachtechFleaMarket
+
  |-src
+ 
     |-storage
+    
         |-app
+        
            |-public
+           
 　            |-item-img
+             
               |-logo
+              
               |-user-icon
+              
 
 
 ##mysql
