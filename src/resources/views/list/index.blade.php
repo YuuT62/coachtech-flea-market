@@ -36,7 +36,6 @@
                 @endisset
                 <img class="list__element-img" src="{{ asset($rec_item->item_img) }}" alt="item-img">
                 <p class="list__element-price">¥{{ number_format($rec_item->price) }}</p>
-                <p>{{$rec_item->id}}</p>
             </button>
         </form>
         @endforeach
@@ -49,7 +48,6 @@
                 @endisset
                 <img class="list__element-img" src="{{ asset($item->item_img) }}" alt="item-img">
                 <p class="list__element-price">¥{{ number_format($item->price) }}</p>
-                <p>{{$item->id}}</p>
             </button>
         </form>
         @endforeach
