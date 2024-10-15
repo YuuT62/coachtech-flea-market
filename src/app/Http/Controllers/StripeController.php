@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Item;
 use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +29,6 @@ class StripeController extends Controller
     }
 
     public function cancel(){
-        return redirect('/')->with('message', '支払い処理がキャンセルされました。');
+        return redirect('/')->with('messages', '支払い処理がキャンセルされました。');
     }
 }

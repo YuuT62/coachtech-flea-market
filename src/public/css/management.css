@@ -1,6 +1,7 @@
 .management-header{
     margin: 30px auto;
 }
+
 .management-header h1{
     font-size: clamp(1rem, 0.824rem + 0.88vw, 1.5rem);
     text-align: center;
@@ -47,7 +48,6 @@
     color: #ff5656;
     background-color: #fff;
 }
-
 
 .form-mail {
     display: none;
@@ -98,5 +98,4 @@
 }
 
 @media screen and (min-width: 769px) {
-
 }

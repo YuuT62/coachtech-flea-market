@@ -53,11 +53,10 @@ class UserController extends Controller
             ]);
         }
 
-
         $postcode = $request['postcode'];
         $address = $request['address'];
 
-        if (preg_match('@^(.{2,3}?[都道府県])(.+?郡.+?[町村]|.+?市.+?区|.+?[市区町村])(.+)@u', $address, $matches) == 1) {
+        if (preg_match('@^(.{2,3}?[都道府県])(.+?郡.+?[町村]|.+?市.+?区|.+?[市区町村])(.+)@u', $address, $matches) === 1) {
             $address = [
                 'prefecture' => $matches[1],
                 'city' => $matches[2],
@@ -86,8 +85,7 @@ class UserController extends Controller
                 ]);
             }
         }
-        return redirect('/mypage')->with('message', 'プロフィールを編集しました');
-
+        return redirect('/mypage')->with('messages', 'プロフィールを編集しました');
     }
 }
 

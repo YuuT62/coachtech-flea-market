@@ -10,9 +10,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Item;
 use App\Models\Condition;
-use App\Models\Favorite;
 use App\Models\Comment;
-use App\Models\Address;
 use Illuminate\Http\UploadedFile;
 use DateTime;
 

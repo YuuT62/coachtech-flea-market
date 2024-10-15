@@ -13,4 +13,8 @@ class CategoryItem extends Model
         'item_id',
         'category_id',
     ];
+
+    public function item(){
+        return $this->belongsTo(Item::class);
+    }
 }

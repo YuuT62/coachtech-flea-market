@@ -11,9 +11,6 @@
 
 @section('content')
 
-<div class="error-message">
-
-</div>
 <div class="purchase-wrapper">
     <div class="purchase-item">
         <div class="purchase-item-info">
@@ -118,15 +115,14 @@
 const modal = document.querySelector('.js-modal');
 const modalButton = document.querySelector('.js-modal-button');
 
-// 追記
-const modalClose = document.querySelector('.js-close-button');// xボタンのjs-close-buttonを取得し変数に格納
+const modalClose = document.querySelector('.js-close-button');
 
 modalButton.addEventListener('click', () => {
     modal.classList.add('is-open');
 });
 
 // 追記
-modalClose.addEventListener('click', () => { // xボタンをクリックしたときのイベントを登録
+modalClose.addEventListener('click', () => {
     modal.classList.remove('is-open');
 });
 
@@ -154,7 +150,7 @@ function nowUrl($item_id){
     }else{
         $url .= 'http://';
     }
-    $url .= $_SERVER['HTTP_HOST'] . str_replace($item_id.'?', '', $_SERVER['REQUEST_URI']);
+    $url .= $_SERVER['HTTP_HOST'] . str_replace($item_id, '',str_replace('?', '', $_SERVER['REQUEST_URI']));
     return $url;
 }
 ?>
@@ -200,13 +196,7 @@ function nowUrl($item_id){
             ?>
 
             var stripe = Stripe('<?php echo $publicKey;?>');
-            stripe.redirectToCheckout({sessionId: "<?php echo $session_credit->id;?>"})
-            .then(function (result) {
-            if (result.error) {
-                // var displayError = document.getElementById('error-message');
-                // displayError.textContent = result.error.message;
-            }
-            });
+            stripe.redirectToCheckout({sessionId: "<?php echo $session_credit->id;?>"});
         }else if(value[1].checked){
             <?php
             $session_convenience = $stripe->checkout->sessions->create([
@@ -227,13 +217,7 @@ function nowUrl($item_id){
             ]);
             ?>
             var stripe = Stripe('<?php echo $publicKey;?>');
-            stripe.redirectToCheckout({sessionId: "<?php echo $session_convenience->id;?>"})
-            .then(function (result) {
-            if (result.error) {
-                // var displayError = document.getElementById('error-message');
-                // displayError.textContent = result.error.message;
-            }
-            });
+            stripe.redirectToCheckout({sessionId: "<?php echo $session_convenience->id;?>"});
         }else{
             <?php
             $customer = $stripe->customers->create();
@@ -264,13 +248,7 @@ function nowUrl($item_id){
             ]);
             ?>
             var stripe = Stripe('<?php echo $publicKey;?>');
-            stripe.redirectToCheckout({sessionId: "<?php echo $session_bank->id;?>"})
-            .then(function (result) {
-            if (result.error) {
-                // var displayError = document.getElementById('error-message');
-                // displayError.textContent = result.error.message;
-            }
-            });
+            stripe.redirectToCheckout({sessionId: "<?php echo $session_bank->id;?>"});
         }
     });
 </script>

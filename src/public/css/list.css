@@ -215,8 +215,6 @@
     }
 }
 
-
-
 @media screen and (min-width: 769px) {
     .list-header-content {
         display: flex;
@@ -241,12 +239,10 @@
         margin: 1%;
     }
 
-
     .list__element-price {
         font-size: clamp(1rem, -0.251rem + 2.6vw, 1.75rem);
         top: 65%;
     }
-
 
     .list__element--mypage{
         width:23%

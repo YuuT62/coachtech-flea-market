@@ -25,8 +25,8 @@ class SellRequest extends FormRequest
     {
         return [
             'item_img' => ['required', 'image'],
-            'category' => ['required', 'string' , 'max:191', 'regex:/^[^!"$%&=-~\|{}+:*?.\/#<>^;_]*$/'],
-            'brand_name' => ['nullable', 'string' , 'max:191'],
+            'category' => ['required', 'string' , 'max:191', 'regex:/^[^\.\^!"\$%&=\-~\|\{\}\[\]\(\)\+:\*\?\.\/#<>\^;_\\\]*$/'],
+            'brand_name' => ['string' , 'max:191', 'nullable'],
             'condition' => ['required'],
             'item_name' => ['required', 'string' , 'max:191'],
             'description' => ['required', 'string' , 'max:191'],

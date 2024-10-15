@@ -38,7 +38,7 @@
         </div>
         <div class="form__element">
             <label class="form__element-label">パスワード</label>
-            <input class="form__element-input" name="password" type="text">
+            <input class="form__element-input" name="password" type="password">
         </div>
         <div class="form__error">
             <span class="form__error-text">

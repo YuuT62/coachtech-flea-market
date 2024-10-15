@@ -8,6 +8,7 @@ use Tests\TestCase;
 
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\DestinationRequest;
 use App\Http\Requests\SellRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\UploadedFile;
@@ -161,8 +162,111 @@ class RequestTest extends TestCase
         $actual = $validator->fails();
         $expected = true;
         $this->assertSame($expected, $actual);
+    }
 
+    public function testDestinationRequest(){
+        $request = new DestinationRequest();
+        $rules = $request->rules();
 
+        $data = [
+            'postcode' => '',
+            'address' => '',
+            'building' => ''
+        ];
+        $validator = Validator::make($data, $rules);
+        $actual = $validator->fails();
+        $expected = true;
+        $this->assertSame($expected, $actual);
+
+        $data = [
+            'postcode' => '000-0000',
+            'address' => '東京都墨田区押上1-1-2',
+            'building' => ''
+        ];
+        $validator = Validator::make($data, $rules);
+        $actual = $validator->passes();
+        $expected = true;
+        $this->assertSame($expected, $actual);
+
+        $data = [
+            'postcode' => '000-0000',
+            'address' => '東京都墨田区押上1-1-2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+            'building' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        ];
+        $validator = Validator::make($data, $rules);
+        $actual = $validator->passes();
+        $expected = true;
+        $this->assertSame($expected, $actual);
+
+        $data = [
+            'postcode' => '000-0000',
+            'address' => '東京都墨田区押上1-1-2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+            'building' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        ];
+        $validator = Validator::make($data, $rules);
+        $actual = $validator->fails();
+        $expected = true;
+        $this->assertSame($expected, $actual);
+
+        $data = [
+            'postcode' => '000-0000',
+            'address' => '東京都墨田区押上1-1-2',
+            'building' => 1
+        ];
+        $validator = Validator::make($data, $rules);
+        $actual = $validator->fails();
+        $expected = true;
+        $this->assertSame($expected, $actual);
+
+        $data = [
+            'postcode' => '0000000',
+            'address' => '東京都墨田区押上1-1-2',
+            'building' => ''
+        ];
+        $validator = Validator::make($data, $rules);
+        $actual = $validator->fails();
+        $expected = true;
+        $this->assertSame($expected, $actual);
+
+        $data = [
+            'postcode' => '00a-000a',
+            'address' => '東京都墨田区押上1-1-2',
+            'building' => ''
+        ];
+        $validator = Validator::make($data, $rules);
+        $actual = $validator->fails();
+        $expected = true;
+        $this->assertSame($expected, $actual);
+
+        $data = [
+            'postcode' => '000-000',
+            'address' => '東京都墨田区押上1-1-2',
+            'building' => ''
+        ];
+        $validator = Validator::make($data, $rules);
+        $actual = $validator->fails();
+        $expected = true;
+        $this->assertSame($expected, $actual);
+
+        $data = [
+            'postcode' => '00-0000',
+            'address' => '東京都墨田区押上1-1-2',
+            'building' => ''
+        ];
+        $validator = Validator::make($data, $rules);
+        $actual = $validator->fails();
+        $expected = true;
+        $this->assertSame($expected, $actual);
+
+        $data = [
+            'postcode' => '000-0000',
+            'address' => '東京墨田押上1-1-2',
+            'building' => ''
+        ];
+        $validator = Validator::make($data, $rules);
+        $actual = $validator->fails();
+        $expected = true;
+        $this->assertSame($expected, $actual);
     }
 
     public function testSellRequest(){

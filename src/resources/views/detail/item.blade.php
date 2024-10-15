@@ -60,7 +60,7 @@
                 </li>
             </ul>
         </div>
-
+        @if(Auth::check())
         <form class="detail-btn" action="/purchase/{{ $item->id }}" method="get" id="detailBtn">
             @isset($item->purchase)
             <button class="detail-btn__submit" type="button" style="background-color:#C0C0C0; border:3px solid #C0C0C0; pointer-events:none;" >SOLD OUT</button>
@@ -72,6 +72,19 @@
                 @endif
             @endisset
         </form>
+        @else
+        <form class="detail-btn" action="/login" method="get" id="detailBtn">
+            @isset($item->purchase)
+            <button class="detail-btn__submit" type="button" style="background-color:#C0C0C0; border:3px solid #C0C0C0; pointer-events:none;" >SOLD OUT</button>
+            @else
+                @if($item->user_id === Auth::id())
+                <button class="detail-btn__submit" type="button" style="background-color:#C0C0C0; border:3px solid #C0C0C0; pointer-events:none;" >購入不可</button>
+                @else
+                <button class="detail-btn__submit" type="submit">購入する</button>
+                @endif
+            @endisset
+        </form>
+        @endif
 
         <div class="detail-info" id="detailInfo">
             <div class="detail-info-desc">
@@ -179,24 +192,23 @@
 
     // いいねボタン
     $(function () {
-        let favorite = $('.favorite-toggle'); //like-toggleのついたiタグを取得し代入。
-        favorite.on('click', function () { //onはイベントハンドラー
-            let $this = $(this); //this=イベントの発火した要素＝iタグを代入
-            let favoriteItemId = $this.data('item-id'); //iタグに仕込んだdata-item-idの値を取得
-            //ajax処理スタート
+        let favorite = $('.favorite-toggle');
+        favorite.on('click', function () {
+            let $this = $(this);
+            let favoriteItemId = $this.data('item-id');
             $.ajax({
-                headers: { //HTTPヘッダ情報をヘッダ名と値のマップで記述
+                headers: {
                     'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-                },  //↑name属性がcsrf-tokenのmetaタグのcontent属性の値を取得
-                url: '/favorite', //通信先アドレスで、このURLをあとでルートで設定します
-                method: 'POST', //HTTPメソッドの種別を指定します。1.9.0以前の場合はtype:を使用。
-                data: { //サーバーに送信するデータ
-                    'item_id': favoriteItemId //いいねされた投稿のidを送る
+                },
+                url: '/favorite',
+                method: 'POST',
+                data: {
+                    'item_id': favoriteItemId
                 },
             })
             //通信成功した時の処理
             .done(function (data) {
-            $('.detail-header__item-btn--star').toggleClass('favorite-on'); //likedクラスのON/OFF切り替え。
+            $('.detail-header__item-btn--star').toggleClass('favorite-on');
             $this.next('.favorite-counter').html(data.favorite_count);
             })
             // 通信失敗した時の処理

@@ -12,9 +12,9 @@
 @section('content')
 <div class="list-header">
     <div class="list-header-content">
-        @if(session('message'))
+        @if(session('messages'))
         <div class="session">
-            {{session('message')}}
+            {{session('messages')}}
         </div>
         @endif
         <div class="list-header__user">
@@ -56,7 +56,7 @@
 
     <div class="list-content" id="listPurchase">
         @foreach($purchases as $purchase)
-        <form class="list__element list__element--mypage">
+        <form class="list__element list__element--mypage" action="/item/{{ $purchase->item->id}}" method="get">
             <button class="list__element-btn">
                 <img class="list__element-img" src="{{ asset($purchase->item->item_img) }}" alt="item-img">
                 <p class="list__element-price">¥{{ number_format($purchase->item->price) }}</p>

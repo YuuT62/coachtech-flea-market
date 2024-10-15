@@ -12,20 +12,62 @@ use App\Models\Category;
 use App\Models\CategoryItem;
 use App\Models\User;
 use App\Models\Address;
+use App\Models\Purchase;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SellRequest;
+use App\Http\Requests\DestinationRequest;
 use App\Http\Requests\CommentRequest;
+
 
 class ItemController extends Controller
 {
     // 商品一覧表示
     public function index(){
-        $items=Item::with('purchase')->latest()->paginate(15);
+        if(Auth::check()){
+            $purchases = Purchase::UserSearch(Auth::id())->with('item.categories')->get();
+            $rec=array();
+            foreach($purchases as $purchase){
+                foreach($purchase->item->categories as $category){
+                    if(array_key_exists($category->category, $rec)){
+                        $rec[$category->category]+1;
+                    }else{
+                        $rec += array($category->category=>1);
+                    }
+                }
+            }
+            if(empty($rec) !== true){
+                $most_recs = array_keys($rec, max($rec));
+                $rec_items=Item::with('purchase')->whereHas('categories',function($query) use ($most_recs){
+                    $num=0;
+                    foreach($most_recs as $most_rec){
+                        if($num===0){
+                            $query->Where('category', $most_rec);
+                            $num++;
+                        }else{
+                            $query->orWhere('category', $most_rec);
+                        }
+                    }
+                })->latest()->get();
+
+                $items = Item::with('purchase')->where(function($query) use ($rec_items){
+                    foreach($rec_items as $rec_item){
+                        $query->where('id', '!=', $rec_item->id);
+                    }
+                })->latest()->paginate(15);
+            }else{
+                $rec_items = [];
+                $items = Item::with('purchase')->latest()->paginate(15);
+            }
+        }else{
+            $rec_items = [];
+            $items = Item::with('purchase')->latest()->paginate(15);
+        }
+
         $favorites=[];
         if(Auth::check()){
             $favorites=Favorite::UserSearch(Auth::id())->with('item')->get()->reverse();
         }
-        return view('.list.index', compact('items', 'favorites'));
+        return view('.list.index', compact('items', 'favorites', 'rec_items'));
     }
 
     public function search(Request $request){
@@ -47,24 +89,23 @@ class ItemController extends Controller
     }
 
     public function favorite(Request $request){
-        $user_id = Auth::id(); //1.ログインユーザーのid取得
-        $item_id = $request->item_id; //2.投稿idの取得
-        $already_favorite = Favorite::where('user_id', $user_id)->where('item_id', $item_id)->exists(); //3.
+        $user_id = Auth::id();
+        $item_id = $request->item_id;
+        $already_favorite = Favorite::where('user_id', $user_id)->where('item_id', $item_id)->exists();
 
-        if (!$already_favorite) { //もしこのユーザーがこの投稿にまだいいねしてなかったら
-            $favorite = new Favorite; //4.Likeクラスのインスタンスを作成
-            $favorite->item_id = $item_id; //Likeインスタンスにreview_id,user_idをセット
+        if (!$already_favorite) {
+            $favorite = new Favorite;
+            $favorite->item_id = $item_id;
             $favorite->user_id = $user_id;
             $favorite->save();
-        } else { //もしこのユーザーがこの投稿に既にいいねしてたらdelete
+        } else {
             Favorite::UserSearch($user_id)->ItemSearch($item_id)->delete();
         }
-        //5.この投稿の最新の総いいね数を取得
         $item_favorites_count = Item::withCount('favorite')->findOrFail($item_id)->favorite_count;
         $param = [
             'favorite_count' => $item_favorites_count,
         ];
-        return response()->json($param); //6.JSONデータをjQueryに返す
+        return response()->json($param);
     }
 
     public function comment(CommentRequest $request){
@@ -123,7 +164,7 @@ class ItemController extends Controller
                 ]);
             }
         }
-        return redirect('/');
+        return redirect('/')->with('messages','商品を出品しました。');
     }
 
     public function purchaseForm(Request $request){
@@ -141,15 +182,13 @@ class ItemController extends Controller
         return view('.form.destination', compact('item_id'));
     }
 
-    public function destination(Request $request){
+    public function destination(DestinationRequest $request){
         $item_id = $request['item_id'];
         $user_id = Auth::id();
         $user = User::find($user_id);
-
         $postcode = $request['postcode'];
         $address = $request['address'];
-
-        if (preg_match('@^(.{2,3}?[都道府県])(.+?郡.+?[町村]|.+?市.+?区|.+?[市区町村])(.+)@u', $address, $matches) == 1) {
+        if (preg_match('@^(.{2,3}?[都道府県])(.+?郡.+?[町村]|.+?市.+?区|.+?[市区町村])(.+)@u', $address, $matches) === 1) {
             $address = [
                 'prefecture' => $matches[1],
                 'city' => $matches[2],

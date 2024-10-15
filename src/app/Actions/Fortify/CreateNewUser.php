@@ -32,9 +32,11 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return User::create([
+            'role_id' => 2,
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'user_icon' => '',
         ]);
     }
 }

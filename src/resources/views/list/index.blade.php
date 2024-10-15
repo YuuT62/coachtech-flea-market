@@ -20,13 +20,27 @@
         </form>
     </nav>
 </div>
-@if(session('message'))
+@if(session('messages'))
     <div class="session">
-        {{session('message')}}
+        {{session('messages')}}
     </div>
 @endif
 <div class="list-wrapper">
     <div class="list-content list-rec" id="listRec">
+        @if(isset($rec_items) && (strpos(url()->full(),'page') === false || strpos(url()->full(),'1') !== false ))
+        @foreach($rec_items as $rec_item)
+        <form class="list__element" action="/item/{{ $rec_item->id}}" method="get">
+            <button class="list__element-btn">
+                @isset($rec_item->purchase)
+                <div class="list__element-soldout">SOLD OUT</div>
+                @endisset
+                <img class="list__element-img" src="{{ asset($rec_item->item_img) }}" alt="item-img">
+                <p class="list__element-price">¥{{ number_format($rec_item->price) }}</p>
+                <p>{{$rec_item->id}}</p>
+            </button>
+        </form>
+        @endforeach
+        @endisset
         @foreach($items as $item)
         <form class="list__element" action="/item/{{ $item->id}}" method="get">
             <button class="list__element-btn">
@@ -35,6 +49,7 @@
                 @endisset
                 <img class="list__element-img" src="{{ asset($item->item_img) }}" alt="item-img">
                 <p class="list__element-price">¥{{ number_format($item->price) }}</p>
+                <p>{{$item->id}}</p>
             </button>
         </form>
         @endforeach
@@ -48,6 +63,9 @@
         @foreach($favorites as $item)
         <form class="list__element" action="/item/{{ $item->item->id}}" method="get">
             <button class="list__element-btn">
+                @isset($item->item->purchase)
+                <div class="list__element-soldout">SOLD OUT</div>
+                @endisset
                 <img class="list__element-img" src="{{ asset($item->item->item_img) }}" alt="item-img">
                 <p class="list__element-price">¥{{ number_format($item->item->price) }}</p>
             </button>
@@ -77,6 +95,5 @@
             labelFav.style.color = "#ff0000";
         }
     }
-
 </script>
 @endsection

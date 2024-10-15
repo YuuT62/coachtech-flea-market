@@ -95,7 +95,7 @@
         fileReader.addEventListener('load', (e) => {
             // imgタグ生成
             const imgElm = document.createElement('img');
-            imgElm.src = e.target.result; // e.target.resultに読み込んだ画像のURLが入っている
+            imgElm.src = e.target.result;
 
             // imgタグを挿入
             const targetElm = document.getElementById('previewFile');

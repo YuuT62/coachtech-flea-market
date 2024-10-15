@@ -89,7 +89,6 @@
     height: clamp(7.5rem, 6.841rem + 3.3vw, 9.375rem);
 }
 
-
 .purchase-form-btn{
     width: 80%;
     margin: 0 auto;
@@ -113,8 +112,6 @@
     position: fixed;
     top: 0;
     left: 0;
-
-    /* 追記 */
     z-index: -1;
     opacity: 0;
     visibility: hidden;
@@ -126,8 +123,6 @@
     margin-left: auto;
     width: 80%;
     min-width: 300px;
-
-    /* 追記 */
     opacity: 0;
     visibility: hidden;
 }
@@ -140,9 +135,7 @@
     margin-right: auto;
     background: #fff;
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
-    /* モーダルにシャドウをかける */
     border-radius: 13px;
-    /* モーダルの角を丸める */
     display: block;
     padding: 21px 8px 21px;
     height: auto;
@@ -241,8 +234,6 @@
     border-radius: 3px;
     padding: 3px;
 }
-
-
 @media screen and (min-width: 769px){
     .purchase-wrapper{
         display: flex;

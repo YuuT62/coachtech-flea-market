@@ -32,7 +32,7 @@
         <h2 class="form__subheader">商品の詳細</h2>
         <div class="form__element form__element--category">
             <label class="form__element-label">カテゴリー</label>
-            <input class="form__element-input" name="category" type="text" id="inputCategory">
+            <input class="form__element-input" name="category" type="text" id="inputCategory" value="{{ old('category') }}">
             <p id="toolTip">カンマ(,)で区切ることで複数のカテゴリーを指定できます。（例：洋服,シャツ）</p>
         </div>
         <div class="form__error">
@@ -72,7 +72,7 @@
         <h2 class="form__subheader">商品名と説明</h2>
         <div class="form__element">
             <label class="form__element-label">商品名</label>
-            <input class="form__element-input" name="item_name" type="text">
+            <input class="form__element-input" name="item_name" type="text" value="{{ old('item_name') }}">
         </div>
         <div class="form__error">
             <span class="form__error-text">
@@ -83,7 +83,7 @@
         </div>
         <div class="form__element">
             <label class="form__element-label">商品の説明</label>
-            <input class="form__element-input" name="description" type="textarea">
+            <input class="form__element-input" name="description" type="textarea" value="{{ old('description') }}">
         </div>
         <div class="form__error">
             <span class="form__error-text">
@@ -95,7 +95,7 @@
         <h2 class="form__subheader">販売価格</h2>
         <div class="form__element">
             <label class="form__element-label">販売価格</label>
-            <input class="form__element-input" name="price" type="text" value="" placeholder="¥">
+            <input class="form__element-input" name="price" type="text" value="{{ old('price') }}" placeholder="¥">
         </div>
         <div class="form__error">
             <span class="form__error-text">
