@@ -24,7 +24,7 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_icon' => ['image','nullable'],
+            'user_icon' => ['image','nullable', 'max:2048'],
             'name' => ['required', 'string', 'max:191'],
             'postcode' => ['required', 'string', 'regex:/^[0-9]{3}-[0-9]{4}$/', ],
             'address' => ['required', 'string', 'max:191', 'regex:@^(.{2,3}?[都道府県])(.+?郡.+?[町村]|.+?市.+?区|.+?[市区町村])(.+)@u'],
@@ -35,6 +35,7 @@ class ProfileRequest extends FormRequest
     public function messages(){
         return [
             'user_icon.image' => 'ユーザーアイコンには、画像を指定してください。',
+            'user_icon.max' => 'ユーザーアイコンには、2MB以下のファイルを指定してください。',
             'postcode.regex' => '郵便番号はXXX-XXXXの形式で入力してください。',
             'address.regex' => '都道府県、市区町村を入力してください。'
         ];
