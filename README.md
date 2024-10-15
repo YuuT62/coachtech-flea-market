@@ -129,7 +129,7 @@ https://1drv.ms/f/c/397a6ae1e8c40085/EoMXPmsPguFMubw7shwMXUYBrzosX4DTUGbfXcrDPn_
 
 ダウンロードフォルダ
 
-・logo
+　・logo
 
 配置先
 
@@ -137,26 +137,17 @@ https://1drv.ms/f/c/397a6ae1e8c40085/EoMXPmsPguFMubw7shwMXUYBrzosX4DTUGbfXcrDPn_
 
 "CoachtechFleaMarket/src/storage/app/public"に以下のフォルダを作成してください
 
-・item-img
-・user-icon
-
-フォルダ配置、作成後の"CoachtechFleaMarket/src/storage/app/public"フォルダの状態
-
-CoachtechFleaMarket
-
- |-src
+　・item-img
  
-    |-storage
-    
-        |-app
-        
-           |-public
-           
-　            |-item-img
-             
-              |-logo
-              
-              |-user-icon
+　・user-icon
+
+フォルダ配置、作成後の"CoachtechFleaMarket/src/storage/app/public"フォルダには以下のフォルダがある状態であること
+  ・item-img
+  
+  ・logo
+  
+  ・user-icon
+  
               
 
 
