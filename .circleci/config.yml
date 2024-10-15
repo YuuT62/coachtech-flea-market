@@ -36,10 +36,10 @@ jobs:
       - run:
           name: aws deploy
           command: |
-            ssh -o StrictHostKeyChecking=no -t ec2-user@${HOST_NAME} 'cd /var/www &&\
-            git clone git@github.com:YuuT62/coachtech-flea-market.git &&\
+            ssh -o StrictHostKeyChecking=no -t ec2-user@${HOST_NAME} 'cd /var/www/coachtech-flea-market/ &&\
+            git pull origin main &&\
             sudo yum install -y php-xml &&\
-            cd coachtech-flea-market/src &&\
+            cd src/ &&\
             composer update &&\
             composer install &&\
             sudo yum install php php-devel php-opcache php-mbstring php-xml &&\
