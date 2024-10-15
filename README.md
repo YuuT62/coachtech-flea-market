@@ -142,6 +142,7 @@ https://1drv.ms/f/c/397a6ae1e8c40085/EoMXPmsPguFMubw7shwMXUYBrzosX4DTUGbfXcrDPn_
 　・user-icon
 
 フォルダ配置、作成後の"CoachtechFleaMarket/src/storage/app/public"フォルダには以下のフォルダがある状態であること
+
   ・item-img
   
   ・logo
