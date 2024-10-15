@@ -159,6 +159,7 @@
                 </div>
                 @endforeach
             </div>
+            @if(Auth::check())
             <form class="detail-comment-form detail-btn" action="/item/comment" method="post">
                 @csrf
                 <input type="hidden" name="item_id" value="{{ $item->id }}">
@@ -166,6 +167,15 @@
                 <textarea class="detail-comment-form__text" name="comment" id="comment" rows="8"></textarea>
                 <button class="detail-btn__submit" type="submit">コメントを送信する</button>
             </form>
+            @else
+            <form class="detail-comment-form detail-btn" action="/login" method="get">
+                @csrf
+                <input type="hidden" name="item_id" value="{{ $item->id }}">
+                <label class="detail-comment-form__label" for="comment">商品へのコメント</label>
+                <textarea class="detail-comment-form__text" name="comment" id="comment" rows="8"></textarea>
+                <button class="detail-btn__submit" type="submit">コメントを送信する</button>
+            </form>
+            @endif
         </div>
     </div>
 </div>
