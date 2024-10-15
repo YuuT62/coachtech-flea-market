@@ -133,7 +133,7 @@ https://1drv.ms/f/c/397a6ae1e8c40085/EoMXPmsPguFMubw7shwMXUYBrzosX4DTUGbfXcrDPn_
 
 配置先
 
-・CoachtechFleaMarket/src/storage/app/public
+　・CoachtechFleaMarket/src/storage/app/public
 
 "CoachtechFleaMarket/src/storage/app/public"に以下のフォルダを作成してください
 
@@ -148,8 +148,6 @@ https://1drv.ms/f/c/397a6ae1e8c40085/EoMXPmsPguFMubw7shwMXUYBrzosX4DTUGbfXcrDPn_
   ・logo
   
   ・user-icon
-  
-              
 
 
 ##mysql
