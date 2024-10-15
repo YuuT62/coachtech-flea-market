@@ -86,7 +86,7 @@ http://ec2-52-194-186-51.ap-northeast-1.compute.amazonaws.com/
 
 git clone git@github.com:YuuT62/coachtech-flea-market.git
 
-cd CoachtechFleaMarket/
+cd coachtech-flea-market/
 
 docker-compose up -d --build
 
@@ -112,9 +112,9 @@ composer install
 
   37行目)　MAIL_FROM_ADDRESS=hoge@example.com
 
-  54行目）STRIPE_KEY="（Stripeアカウントの公開可能キー）"
+  58行目）STRIPE_KEY="（Stripeアカウントの公開可能キー）"
 
-  55行目）STRIPE_SECRET="（Stripeアカウントのシークレットキー）"
+  59行目）STRIPE_SECRET="（Stripeアカウントのシークレットキー）"
   
 
 php artisan key:generate
@@ -125,7 +125,7 @@ php artisan db:seed
 
 php artisan storage:link
 
-以下URLよりアイコン、店舗画像をダウンロードし、フォルダごと"CoachtechFleaMarket/src/storage/app/public"に配置してください。
+以下URLよりロゴをダウンロードし、logoフォルダ(内部にlogo.svgファイルがある)ごと"CoachtechFleaMarket/src/storage/app/public"に配置してください。
 
 https://1drv.ms/f/c/397a6ae1e8c40085/EoMXPmsPguFMubw7shwMXUYBrzosX4DTUGbfXcrDPn_Qlw?e=xam4lQ
 
@@ -137,13 +137,13 @@ https://1drv.ms/f/c/397a6ae1e8c40085/EoMXPmsPguFMubw7shwMXUYBrzosX4DTUGbfXcrDPn_
 
 　・CoachtechFleaMarket/src/storage/app/public
 
-"CoachtechFleaMarket/src/storage/app/public"に以下のフォルダを作成してください
+"CoachtechFleaMarket/src/storage/app/public"に以下のフォルダを作成してください。
 
 　・item-img
  
 　・user-icon
 
-フォルダ配置、作成後の"CoachtechFleaMarket/src/storage/app/public"フォルダには以下のフォルダがある状態であること
+フォルダ配置、作成後の"CoachtechFleaMarket/src/storage/app/public"フォルダには、以下のフォルダがあることを確認してください。
 
   ・item-img
   
